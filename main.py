@@ -1,9 +1,17 @@
+import platform
 import tkinter as tk
 
 class NekoApp:
     def __init__(self, root):
         self.root = root
-        self.root.attributes('-transparentcolor', 'white')
+        
+        if platform.system() == 'Darwin':
+            self.root.attributes('-transparent', True)
+            self.root.lift()
+        if platform.system() == 'Windows':
+            self.root.attributes('-transparentcolor', 'white')
+        
+        self.root.attributes('-topmost', True)
         self.root.overrideredirect(True)  # remove window borders
         self.root.geometry("50x50")
         self.label = tk.Label(root, bg="white")
